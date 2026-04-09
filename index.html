@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Raúl Ferreras López · GIS Analyst</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Georgia', serif;
+      background: #fafafa;
+      color: #1a1a1a;
+      line-height: 1.7;
+    }
+
+    a { color: #2c5f8a; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    /* NAV */
+    nav {
+      background: #fff;
+      border-bottom: 1px solid #e0e0e0;
+      padding: 1.2rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    nav .logo {
+      font-size: 1rem;
+      font-weight: bold;
+      letter-spacing: 0.03em;
+      color: #1a1a1a;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 2rem;
+    }
+
+    nav ul li a {
+      font-size: 0.9rem;
+      color: #444;
+      font-family: 'Arial', sans-serif;
+    }
+
+    /* HERO */
+    .hero {
+      max-width: 800px;
+      margin: 6rem auto 5rem;
+      padding: 0 2rem;
+    }
+
+    .hero h1 {
+      font-size: 2.2rem;
+      font-weight: normal;
+      margin-bottom: 1.2rem;
+      line-height: 1.3;
+      color: #1a1a1a;
+    }
+
+    .hero p {
+      font-size: 1.05rem;
+      color: #444;
+      max-width: 620px;
+      margin-bottom: 2rem;
+    }
+
+    .hero-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      margin-bottom: 2.5rem;
+    }
+
+    .tag {
+      background: #eef2f7;
+      color: #2c5f8a;
+      padding: 0.3rem 0.8rem;
+      border-radius: 3px;
+      font-size: 0.82rem;
+      font-family: 'Arial', sans-serif;
+    }
+
+    .btn {
+      display: inline-block;
+      background: #2c5f8a;
+      color: #fff;
+      padding: 0.75rem 1.8rem;
+      border-radius: 3px;
+      font-family: 'Arial', sans-serif;
+      font-size: 0.9rem;
+      margin-right: 1rem;
+    }
+
+    .btn-outline {
+      display: inline-block;
+      border: 1px solid #2c5f8a;
+      color: #2c5f8a;
+      padding: 0.75rem 1.8rem;
+      border-radius: 3px;
+      font-family: 'Arial', sans-serif;
+      font-size: 0.9rem;
+    }
+
+    /* SECTIONS */
+    section {
+      max-width: 800px;
+      margin: 0 auto 6rem;
+      padding: 0 2rem;
+    }
+
+    section h2 {
+      font-size: 1.3rem;
+      font-weight: normal;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: #888;
+      margin-bottom: 2.5rem;
+      border-bottom: 1px solid #e0e0e0;
+      padding-bottom: 0.8rem;
+      font-family: 'Arial', sans-serif;
+    }
+
+    /* PROJECTS */
+    .project {
+      margin-bottom: 4rem;
+    }
+
+    .project img {
+      width: 100%;
+      border: 1px solid #e0e0e0;
+      margin-bottom: 1.5rem;
+    }
+
+    .project h3 {
+      font-size: 1.3rem;
+      font-weight: normal;
+      margin-bottom: 0.4rem;
+    }
+
+    .project .project-meta {
+      font-size: 0.82rem;
+      color: #888;
+      font-family: 'Arial', sans-serif;
+      margin-bottom: 1rem;
+    }
+
+    .project p {
+      color: #444;
+      margin-bottom: 1rem;
+      font-size: 0.98rem;
+    }
+
+    .project-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-top: 1rem;
+    }
+
+    /* SERVICES */
+    .service {
+      margin-bottom: 2.5rem;
+      padding-bottom: 2.5rem;
+      border-bottom: 1px solid #f0f0f0;
+    }
+
+    .service:last-child { border-bottom: none; }
+
+    .service h3 {
+      font-size: 1.1rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .service p {
+      color: #555;
+      font-size: 0.97rem;
+    }
+
+    /* ABOUT */
+    .about p {
+      color: #444;
+      margin-bottom: 1.2rem;
+      font-size: 0.98rem;
+    }
+
+    .stack {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      margin-top: 1.5rem;
+    }
+
+    /* CONTACT */
+    .contact p {
+      color: #444;
+      margin-bottom: 1rem;
+      font-size: 0.98rem;
+    }
+
+    .contact a {
+      font-size: 1rem;
+      color: #2c5f8a;
+    }
+
+    /* FOOTER */
+    footer {
+      text-align: center;
+      padding: 2rem;
+      border-top: 1px solid #e0e0e0;
+      font-size: 0.82rem;
+      color: #aaa;
+      font-family: 'Arial', sans-serif;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <div class="logo">Raúl Ferreras López</div>
+    <ul>
+      <li><a href="#portfolio">Portfolio</a></li>
+      <li><a href="#services">Services</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <div class="hero">
+    <h1>GIS Analyst specializing in spatial vulnerability and urban resilience.</h1>
+    <p>I help organizations understand where risk concentrates and why — through rigorous spatial analysis, clear cartography and actionable reports. Available for international projects.</p>
+    <div class="hero-tags">
+      <span class="tag">Spatial Vulnerability</span>
+      <span class="tag">Urban Resilience</span>
+      <span class="tag">Territorial Risk</span>
+      <span class="tag">QGIS</span>
+      <span class="tag">ArcGIS Pro</span>
+      <span class="tag">Python</span>
+    </div>
+    <a href="#portfolio" class="btn">See my work</a>
+    <a href="#contact" class="btn-outline">Get in touch</a>
+  </div>
+
+  <!-- PORTFOLIO -->
+  <section id="portfolio">
+    <h2>Portfolio</h2>
+
+    <!-- PROJECT 1 -->
+    <div class="project">
+      <img src="images/EVI_Turin.png" alt="Energy Vulnerability Index — Turin" />
+      <h3>Energy Vulnerability Index — Turin</h3>
+      <div class="project-meta">Italy · Census tract level (ISTAT Sezioni di Censimento) · QGIS</div>
+      <p><strong>Problem:</strong> Identify which census tracts in Turin concentrate the highest energy vulnerability, combining socioeconomic, housing and demographic indicators to support targeted policy intervention.</p>
+      <p><strong>Methodology:</strong> Construction of a composite Energy Vulnerability Index (EVI) using normalized indicators from ISTAT census data at the finest available spatial resolution. Spatial autocorrelation analysis with Getis-Ord Gi* hotspot detection and Local Indicators of Spatial Association (LISA) to identify statistically significant vulnerability clusters.</p>
+      <p><strong>Result:</strong> High-resolution vulnerability maps and cluster analysis revealing spatial patterns invisible in aggregate statistics — enabling decision-makers to prioritize intervention areas with precision.</p>
+      <div class="project-tags">
+        <span class="tag">Composite Index</span>
+        <span class="tag">Hotspot Analysis (Gi*)</span>
+        <span class="tag">LISA</span>
+        <span class="tag">Census Data</span>
+        <span class="tag">QGIS</span>
+      </div>
+    </div>
+
+    <!-- PROJECT 2 -->
+    <div class="project">
+      <img src="images/Urban_Service_Accessibility_Index___Barcelona.png" alt="Urban Service Accessibility Index — Barcelona" />
+      <h3>Urban Service Accessibility Index — Barcelona</h3>
+      <div class="project-meta">Spain · Census section level · QGIS · OpenStreetMap</div>
+      <p><strong>Problem:</strong> Measure the real accessibility of urban services across Barcelona's census sections to identify underserved areas and support urban planning decisions.</p>
+      <p><strong>Methodology:</strong> Construction of a composite Urban Service Accessibility Index integrating OpenStreetMap data and Barcelona's open data portal at census section level. Multi-criteria spatial analysis combining proximity, density and coverage of key urban services.</p>
+      <p><strong>Result:</strong> Accessibility classification map identifying high, medium-high, medium-low and low accessibility zones — providing a spatial evidence base for equitable urban service planning.</p>
+      <div class="project-tags">
+        <span class="tag">Accessibility Analysis</span>
+        <span class="tag">Composite Index</span>
+        <span class="tag">OpenStreetMap</span>
+        <span class="tag">Urban Planning</span>
+        <span class="tag">QGIS</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section id="services">
+    <h2>Services</h2>
+
+    <div class="service">
+      <h3>Territorial Vulnerability Analysis</h3>
+      <p>Composite index construction combining socioeconomic, environmental and demographic indicators. Spatial statistics including hotspot detection (Gi*) and LISA cluster analysis. Census-level mapping and executive report with policy-oriented conclusions.</p>
+    </div>
+
+    <div class="service">
+      <h3>Urban Accessibility Assessment</h3>
+      <p>Service accessibility modeling at neighborhood or census section level. Gap identification and spatial pattern analysis. Cartographic deliverables and data-driven recommendations for urban planning.</p>
+    </div>
+
+    <div class="service">
+      <h3>Territorial & Land Analysis</h3>
+      <p>GIS-based land analysis integrating remote sensing data (NDVI, slope, land cover). Spatial integration of multiple environmental and productive variables. Suitable for agricultural, environmental and land management projects.</p>
+    </div>
+
+    <div class="service">
+      <h3>Custom Spatial Analysis</h3>
+      <p>Tailored GIS analysis for urban resilience, energy, environmental and policy projects. Full workflow from raw data processing to final cartography and reporting. Deliverables adapted to technical and non-technical audiences.</p>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <h2>About</h2>
+    <div class="about">
+      <p>I am a GIS analyst with a background in Environmental Sciences, specializing in spatial vulnerability, territorial risk and urban resilience. My work sits at the intersection of rigorous spatial methodology and practical decision-making — translating complex geographic data into clear, actionable insights for organizations working on urban, environmental and policy challenges.</p>
+      <p>I work at census-level precision, applying composite index construction, spatial autocorrelation analysis and cluster detection to identify patterns that aggregate statistics cannot reveal. My projects are designed not only to be technically sound but to communicate results clearly to both technical teams and policy audiences.</p>
+      <p>I work remotely with international clients across Europe, North America and Latin America. If you have a project that requires serious spatial analysis, clear cartography and a structured report, I would be glad to discuss it.</p>
+      <div class="stack">
+        <span class="tag">QGIS</span>
+        <span class="tag">ArcGIS Pro</span>
+        <span class="tag">Python</span>
+        <span class="tag">GeoPandas</span>
+        <span class="tag">Spatial Statistics</span>
+        <span class="tag">Remote Sensing</span>
+        <span class="tag">Cartography</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <h2>Contact</h2>
+    <div class="contact">
+      <p>I am currently available for international freelance projects. If you are working on urban, environmental or territorial challenges that require rigorous spatial analysis, feel free to reach out.</p>
+      <p>📧 <a href="mailto:raulferreraslopez@outlook.com">raulferreraslopez@outlook.com</a></p>
+      <p>💼 <a href="https://www.linkedin.com/in/raúl-ferreras-lópez-000a772a1" target="_blank">LinkedIn Profile</a></p>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>© 2026 Raúl Ferreras López · GIS Analyst · Spatial Vulnerability & Urban Resilience</p>
+  </footer>
+
+</body>
+</html>
