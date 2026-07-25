@@ -198,6 +198,22 @@
       border-bottom: 1px solid var(--border);
     }
 
+    /* ── FEATURED PROJECT BADGE ── */
+    .project-featured-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      background: var(--accent);
+      color: var(--navy);
+      font-size: 0.7rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0.3rem 0.8rem;
+      border-radius: 2px;
+      margin-bottom: 1rem;
+    }
+
     /* ── PROJECTS ── */
     .project {
       margin-bottom: 5rem;
@@ -206,6 +222,11 @@
       border-radius: 3px;
       overflow: hidden;
       box-shadow: 0 2px 20px rgba(0,0,0,0.06);
+    }
+
+    .project.featured {
+      border-color: var(--accent);
+      box-shadow: 0 4px 32px rgba(200,169,110,0.15);
     }
 
     .project img {
@@ -423,9 +444,40 @@
     <div class="section-label">Selected work</div>
     <div class="section-title">Portfolio</div>
 
-    <!-- PROJECT 1 -->
+    <!-- PROJECT 1 — PHILADELPHIA (FEATURED) -->
+    <div class="project featured">
+      <img src="imagenes/UHI_Philadelphia.jpg" alt="Urban Heat Island Analysis — Philadelphia, PA" loading="lazy" width="860" height="500" />
+      <div class="project-body">
+        <div class="project-featured-label">&#9733; Featured project</div>
+        <div class="project-meta">United States &middot; Neighborhood level &middot; Landsat 8 Collection 2 · QGIS · USGS EarthExplorer</div>
+        <h3>Urban Heat Island Analysis — Philadelphia, PA</h3>
+        <div class="project-block">
+          <strong>Problem</strong>
+          <p>Identify where Philadelphia's urban heat concentrates at the neighborhood scale and quantify the temperature gap between the hottest built-up districts and the city's green and riparian corridors — providing spatial evidence for heat-equity and urban greening policy.</p>
+        </div>
+        <div class="project-block">
+          <strong>Methodology</strong>
+          <p>Land Surface Temperature (LST) retrieval from Landsat 8 Band 10 (TIRS) using the radiometric calibration and emissivity correction workflow (USGS Collection 2, Level-2). Thermal classification into nine LST ranges (≤18 °C to &gt;46 °C) overlaid with OpenDataPhilly neighborhood boundaries. Spatial pattern analysis to identify hotspot corridors, riverfront cooling effects and intra-city temperature differentials reaching over 28 °C.</p>
+        </div>
+        <div class="project-block">
+          <strong>Result</strong>
+          <p>High-resolution LST map revealing a pronounced heat island in central and south Philadelphia (38–46+ °C) against cooler green and waterfront buffers (18–26 °C). The analysis provides a neighborhood-level evidence base directly applicable to heat action planning, urban tree-canopy prioritization and climate-resilience investment.</p>
+        </div>
+        <div class="project-tags">
+          <span class="tag">Urban Heat Island</span>
+          <span class="tag">Land Surface Temperature</span>
+          <span class="tag">Landsat 8</span>
+          <span class="tag">Remote Sensing</span>
+          <span class="tag">Thermal Analysis</span>
+          <span class="tag">QGIS</span>
+          <span class="tag">Climate Resilience</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- PROJECT 2 — TURIN -->
     <div class="project">
-      <img src="imagenes/EVI_Turin.png" alt="Energy Vulnerability Index — Turin" />
+      <img src="imagenes/EVI_Turin.png" alt="Energy Vulnerability Index — Turin" loading="lazy" width="860" height="500" />
       <div class="project-body">
         <div class="project-meta">Italy &middot; Census tract level (ISTAT Sezioni di Censimento) &middot; QGIS</div>
         <h3>Energy Vulnerability Index — Turin</h3>
@@ -451,9 +503,9 @@
       </div>
     </div>
 
-    <!-- PROJECT 2 -->
+    <!-- PROJECT 3 — BARCELONA -->
     <div class="project">
-      <img src="imagenes/Urban Service Accessibility Index — Barcelona.png" alt="Urban Service Accessibility Index — Barcelona" />
+      <img src="imagenes/Urban Service Accessibility Index — Barcelona.png" alt="Urban Service Accessibility Index — Barcelona" loading="lazy" width="860" height="500" />
       <div class="project-body">
         <div class="project-meta">Spain &middot; Census section level &middot; QGIS &middot; OpenStreetMap</div>
         <h3>Urban Service Accessibility Index — Barcelona</h3>
@@ -492,16 +544,16 @@
         <p>Composite index construction combining socioeconomic, environmental and demographic indicators. Spatial statistics including hotspot detection (Gi*) and LISA cluster analysis. Census-level mapping and executive report with policy-oriented conclusions.</p>
       </div>
       <div class="service-card">
+        <h3>Urban Heat Island Mapping</h3>
+        <p>Land Surface Temperature retrieval from Landsat satellite imagery. Thermal classification and neighborhood-level analysis. Spatial evidence for heat action planning, tree-canopy prioritization and climate-resilience investment.</p>
+      </div>
+      <div class="service-card">
         <h3>Urban Accessibility Assessment</h3>
         <p>Service accessibility modeling at neighborhood or census section level. Gap identification and spatial pattern analysis. Cartographic deliverables and data-driven recommendations for urban planning.</p>
       </div>
       <div class="service-card">
         <h3>Territorial & Land Analysis</h3>
         <p>GIS-based land analysis integrating remote sensing data (NDVI, slope, land cover). Spatial integration of multiple environmental and productive variables. Suitable for agricultural, environmental and land management projects.</p>
-      </div>
-      <div class="service-card">
-        <h3>Custom Spatial Analysis</h3>
-        <p>Tailored GIS analysis for urban resilience, energy, environmental and policy projects. Full workflow from raw data processing to final cartography and reporting. Deliverables adapted to technical and non-technical audiences.</p>
       </div>
     </div>
   </div>
@@ -541,7 +593,7 @@
           <span class="contact-link-label">Email</span>
           raulferreraslopez@outlook.com
         </a>
-        <a href="https://www.linkedin.com/in/raúl-ferreras-lópez-000a772a1" target="_blank" class="contact-link">
+        <a href="https://www.linkedin.com/in/raúl-ferreras-lópez-000a772a1" target="_blank" rel="noopener noreferrer" class="contact-link">
           <span class="contact-link-label">LinkedIn</span>
           linkedin.com/in/raúl-ferreras-lópez
         </a>
