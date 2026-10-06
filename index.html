@@ -313,6 +313,152 @@
       letter-spacing: 0.03em;
     }
 
+    /* ── CASE STUDY (PLATFORM) ── */
+    .case-lead {
+      font-size: 1.02rem;
+      color: #444;
+      line-height: 1.85;
+      margin-bottom: 2rem;
+    }
+
+    .case-lead strong { font-weight: 500; color: var(--navy); }
+
+    .kpi-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1rem;
+      margin-bottom: 2.5rem;
+    }
+
+    .kpi {
+      background: var(--navy);
+      color: var(--white);
+      border-radius: 3px;
+      padding: 1.1rem 1.2rem;
+      border-top: 3px solid var(--accent);
+    }
+
+    .kpi-value {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.35rem;
+      line-height: 1.2;
+    }
+
+    .kpi-label {
+      font-size: 0.7rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.55);
+      margin-top: 0.3rem;
+    }
+
+    .case-block { margin-bottom: 2.25rem; }
+
+    .case-block h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.2rem;
+      font-weight: 400;
+      color: var(--navy);
+      margin-bottom: 0.75rem;
+    }
+
+    .case-block p {
+      font-size: 0.95rem;
+      color: #444;
+      margin-bottom: 0.9rem;
+    }
+
+    .case-block strong { font-weight: 500; color: var(--navy); }
+
+    .arch-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.25rem;
+    }
+
+    .arch-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-top: 3px solid var(--blue);
+      border-radius: 3px;
+      padding: 1.4rem;
+      box-shadow: 0 1px 8px rgba(0,0,0,0.04);
+    }
+
+    .arch-card h4 {
+      font-size: 0.78rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--blue);
+      font-weight: 500;
+      margin-bottom: 0.5rem;
+    }
+
+    .arch-card p { font-size: 0.88rem; color: #555; line-height: 1.7; margin: 0; }
+    .arch-card strong { font-weight: 500; color: var(--navy); }
+    .arch-card code, .case-block code {
+      font-family: ui-monospace, Menlo, Consolas, monospace;
+      font-size: 0.8rem;
+      background: #eef3f8;
+      color: var(--navy-mid);
+      padding: 0.08rem 0.35rem;
+      border-radius: 2px;
+    }
+
+    .impact-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.25rem;
+    }
+
+    .impact-card {
+      background: #fbf8f1;
+      border: 1px solid rgba(200,169,110,0.5);
+      border-radius: 3px;
+      padding: 1.4rem;
+    }
+
+    .impact-card h4 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1rem;
+      font-weight: 400;
+      color: var(--navy);
+      margin-bottom: 0.5rem;
+    }
+
+    .impact-card p { font-size: 0.87rem; color: #555; line-height: 1.7; margin: 0; }
+    .impact-card strong { font-weight: 500; color: var(--navy); }
+
+    .case-actions { display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 2.5rem; }
+
+    .btn-dark {
+      background: var(--navy);
+      color: var(--white);
+      padding: 0.8rem 2rem;
+      font-size: 0.85rem;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      border-radius: 2px;
+      transition: background 0.2s;
+    }
+
+    .btn-dark:hover { background: var(--navy-mid); color: var(--white); }
+
+    .btn-outline {
+      border: 1px solid var(--navy);
+      color: var(--navy);
+      padding: 0.8rem 2rem;
+      font-size: 0.85rem;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      border-radius: 2px;
+      transition: background 0.2s, color 0.2s;
+    }
+
+    .btn-outline:hover { background: var(--navy); color: var(--white); }
+
     /* ── SERVICES ── */
     .services-grid {
       display: grid;
@@ -422,6 +568,8 @@
     @media (max-width: 640px) {
       nav ul { gap: 1.25rem; }
       .services-grid { grid-template-columns: 1fr; }
+      .kpi-grid { grid-template-columns: 1fr 1fr; }
+      .arch-grid, .impact-grid { grid-template-columns: 1fr; }
       .hero { padding: 4rem 1.5rem; }
       .section { padding: 3.5rem 1.5rem; }
       .contact-box { padding: 2rem 1.5rem; }
@@ -435,6 +583,7 @@
     <div class="logo">Raúl Ferreras López</div>
     <ul>
       <li><a href="#portfolio">Portfolio</a></li>
+      <li><a href="#case-study">Case Study</a></li>
       <li><a href="#services">Services</a></li>
       <li><a href="#about">About</a></li>
       <li><a href="#contact">Contact</a></li>
@@ -555,6 +704,91 @@
           <span class="tag">QGIS</span>
         </div>
       </div>
+    </div>
+  </div>
+
+  <hr class="section-divider" />
+
+  <!-- CASE STUDY — URBAN HEAT RESILIENCE INTELLIGENCE PLATFORM -->
+  <div class="section" id="case-study">
+    <div class="section-label">B2B case study · Python &amp; PostGIS</div>
+    <div class="section-title">Asset-Level Climate Risk, Quantified: Urban Heat Resilience Intelligence Platform</div>
+
+    <p class="case-lead">Static heat maps show where it is hot. This platform shows <strong>which assets are exposed</strong>. It scores <strong>2,000+ individual properties</strong> with a 0–100 <strong>Thermal Vulnerability Index</strong>, giving investors, insurers and ESG teams defensible evidence for valuation, underwriting and certification.</p>
+
+    <div class="kpi-grid">
+      <div class="kpi"><div class="kpi-value">2,000+</div><div class="kpi-label">Assets scored</div></div>
+      <div class="kpi"><div class="kpi-value">0–100</div><div class="kpi-label">Risk index</div></div>
+      <div class="kpi"><div class="kpi-value">Brickell, Miami</div><div class="kpi-label">Case study</div></div>
+      <div class="kpi"><div class="kpi-value">LEED · BREEAM</div><div class="kpi-label">Certification support</div></div>
+    </div>
+
+    <div class="case-block">
+      <h3>The Challenge</h3>
+      <p>Real estate developers, insurers and urban planners need to financially quantify climate risk at the <strong>parcel level</strong>. Traditional static heat maps cannot show which assets face <strong>devaluation risk</strong>, which occupants are most exposed, or where an <strong>ESG investment</strong> delivers the greatest risk reduction.</p>
+      <p>The result is underwriting without spatial evidence and sustainability capital allocated by instinct.</p>
+    </div>
+
+    <div class="case-block">
+      <h3>The Solution</h3>
+      <p>I built an end-to-end spatial data pipeline that cross-references <strong>extreme urban heat stress</strong> with <strong>sociodemographic vulnerability</strong> to produce an auditable <strong>Thermal Vulnerability Index</strong> for every asset in the Brickell Financial District, Miami.</p>
+      <p>Clients upload a portfolio (<code>CSV</code> or <code>GeoJSON</code>) to an interactive dashboard and receive an automated thermal risk report for each property.</p>
+    </div>
+
+    <div class="case-block">
+      <h3>Technical Architecture</h3>
+      <div class="arch-grid">
+        <div class="arch-card">
+          <h4>1 · Infrastructure</h4>
+          <p><strong>Docker</strong> (Infrastructure as Code) running <strong>PostgreSQL + PostGIS</strong>. One command reproduces the full environment for any client or team.</p>
+        </div>
+        <div class="arch-card">
+          <h4>2 · Python ETL</h4>
+          <p><strong>Python</strong> pipelines (<code>pandas</code>, <code>rasterio</code>, <code>SQLAlchemy</code>, <code>GeoAlchemy2</code>) extract, clean and bulk-load multi-source open data.</p>
+        </div>
+        <div class="arch-card">
+          <h4>3 · Data Fusion</h4>
+          <p>Land Surface Temperature from <strong>Landsat 8</strong>; building footprints and urban tree canopy from <strong>OpenStreetMap</strong>; population and census microdata from <strong>WorldPop</strong> and local census sources.</p>
+        </div>
+        <div class="arch-card">
+          <h4>4 · PostGIS Engine</h4>
+          <p>Heavy analytics run <strong>inside the database</strong>: <code>ST_SummaryStats</code> for mean temperature per census block; <code>ST_Intersects</code> and <code>ST_Area</code> for tree canopy coverage per city block.</p>
+        </div>
+      </div>
+      <p style="margin-top:1rem;font-size:0.85rem;color:var(--text-muted);">Pushing spatial computation into PostGIS keeps the platform fast, reproducible and scalable as portfolios grow.</p>
+    </div>
+
+    <div class="case-block">
+      <h3>Business Impact</h3>
+      <div class="impact-grid">
+        <div class="impact-card">
+          <h4>Asset-Level Risk Visibility</h4>
+          <p>Replace blanket assumptions with a ranked, parcel-specific view of <strong>devaluation and underwriting exposure</strong>.</p>
+        </div>
+        <div class="impact-card">
+          <h4>Smarter ESG Capital Allocation</h4>
+          <p>Prioritize retrofit, shading and canopy investments where they deliver the <strong>highest risk reduction per dollar</strong>.</p>
+        </div>
+        <div class="impact-card">
+          <h4>Certification-Ready Evidence</h4>
+          <p>Reproducible spatial justification supporting <strong>LEED</strong> and <strong>BREEAM</strong> documentation and faster reporting cycles.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="project-tags">
+      <span class="tag">Python</span>
+      <span class="tag">PostGIS</span>
+      <span class="tag">Docker</span>
+      <span class="tag">Landsat 8</span>
+      <span class="tag">OpenStreetMap</span>
+      <span class="tag">WorldPop</span>
+      <span class="tag">Climate Risk</span>
+    </div>
+
+    <div class="case-actions">
+      <a href="#demo-video-url" class="btn-dark">&#9654; Watch the Interactive Demo Video</a>
+      <a href="https://github.com/RaulFerreras8/urban-heat-resilience-intelligence" target="_blank" rel="noopener noreferrer" class="btn-outline">Review Architecture on GitHub &rarr;</a>
     </div>
   </div>
 
