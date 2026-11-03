@@ -233,28 +233,78 @@
         </div>
       </div>
     </div>
+  <hr class="section-divider" />
 
-    <!-- PROJECT 4 — PORT OF HOUSTON -->
-<div class="project">
- 
-  <div class="project-body">
-    <div class="project-meta">Supply Chain Risk Intelligence &middot; Spatial Graph Topology</div>
-    <h3>Port of Houston: Supply Chain Flood Disruption &amp; &ldquo;Asphalt Island&rdquo; Simulator</h3>
+  <!-- CASE STUDY — PORT OF HOUSTON SUPPLY CHAIN FLOOD DISRUPTION -->
+  <div class="section" id="houston-case-study">
+    <div class="section-label">B2B case study · Supply Chain Risk Intelligence</div>
+    <div class="section-title">Port of Houston: Supply Chain Flood Disruption &amp; &ldquo;Asphalt Island&rdquo; Simulator</div>
 
-    <div class="project-block">
-      <strong>Executive summary</strong>
-      <p>End-to-end hydrological and topological vulnerability audit across <strong>141 logistics hubs</strong> and <strong>11,967 freight road segments</strong> in the Houston Ship Channel corridor (I-610 / I-10). By coupling 10m USGS DEM processing with PostGIS graph survival analysis, the model demonstrates that <strong>86.2% of daily financial risk ($18.44M/day)</strong> strikes 100% dry warehouses paralyzed as <em>&ldquo;Asphalt Islands&rdquo;</em> due to 4,302 severed road links.</p>
-    </div>
+    <p class="case-lead">Standard flood maps show which buildings get wet. This simulator shows <strong>which supply chains stop moving</strong>. Across <strong>141 logistics hubs</strong> and <strong>11,967 freight road segments</strong> in the Houston Ship Channel corridor, <strong>86.2% of daily financial risk ($18.44M/day)</strong> hits fully dry warehouses cut off as <em>&ldquo;Asphalt Islands&rdquo;</em> by 4,302 severed road links.</p>
 
-    <div class="kpi-grid" style="margin:1.5rem 0 1.5rem;">
+    <div class="kpi-grid">
       <div class="kpi"><div class="kpi-value">$21.38M / day</div><div class="kpi-label">Total Value at Risk</div></div>
       <div class="kpi"><div class="kpi-value">101 Hubs</div><div class="kpi-label">Asphalt Islands · 86.2% Risk</div></div>
       <div class="kpi"><div class="kpi-value">306.4 km</div><div class="kpi-label">Submerged Freight Network</div></div>
       <div class="kpi"><div class="kpi-value">16x</div><div class="kpi-label">Disruption Multiplier</div></div>
     </div>
-      <div class="video-wrap">
+
+    <div class="video-wrap">
       <iframe src="https://www.youtube-nocookie.com/embed/Vx4UoRjrPNQ" title="Port of Houston — Supply Chain Flood Disruption &amp; Asphalt Island Simulator" loading="lazy" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-  </div>
+    </div>
+
+    <div class="case-block">
+      <h3>The Challenge</h3>
+      <p>Port authorities, insurers and logistics operators need to understand not only <strong>which facilities flood</strong>, but which remain dry yet become <strong>operationally unreachable</strong> when surrounding underpasses and arterial links exceed truck wading limits.</p>
+      <p>Traditional property-level flood audits miss this topological blind spot — and with it, the majority of real financial exposure.</p>
+    </div>
+
+    <div class="case-block">
+      <h3>The Solution</h3>
+      <p>I built an end-to-end spatial intelligence pipeline that couples <strong>10m USGS 3DEP terrain processing</strong> with <strong>PostGIS network survival analysis</strong> to simulate how flood depth propagates into freight accessibility.</p>
+      <p>The model classifies every logistics hub as directly flooded, operating with critical detours, or fully isolated as an <em>&ldquo;Asphalt Island&rdquo;</em> — and quantifies the daily financial impact of each state.</p>
+    </div>
+
+    <div class="case-block">
+      <h3>Technical Architecture</h3>
+      <div class="arch-grid">
+        <div class="arch-card">
+          <h4>1 · Terrain &amp; Hydrology</h4>
+          <p><strong>USGS 3DEP</strong> 10m DEM processed with <strong>WhiteboxTools D8</strong> flow accumulation and depression breaching to derive flood-prone corridors.</p>
+        </div>
+        <div class="arch-card">
+          <h4>2 · Freight Network</h4>
+          <p><strong>OSMnx</strong> extracts the road graph; <strong>PostGIS</strong> fragments it against flood polygons using <code>ST_Intersection</code> and depth thresholds.</p>
+        </div>
+        <div class="arch-card">
+          <h4>3 · Graph Survival</h4>
+          <p><strong>NetworkX</strong> compares the pre- and post-flood network to detect hubs that lose connectivity to the main arterial component.</p>
+        </div>
+        <div class="arch-card">
+          <h4>4 · 3D WebGIS</h4>
+          <p><strong>MapLibre GL</strong> renders the results in an interactive 3D dashboard for executive exploration of scenarios and hub-level exposure.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="case-block">
+      <h3>Business Impact</h3>
+      <div class="impact-grid">
+        <div class="impact-card">
+          <h4>Hidden Risk Revealed</h4>
+          <p>Identifies <strong>101 dry but isolated hubs</strong> carrying 86.2% of daily financial risk — invisible to conventional flood audits.</p>
+        </div>
+        <div class="impact-card">
+          <h4>16x Better Risk Signal</h4>
+          <p>Expands detected disruption from $1.11M to $19.55M per day by accounting for topological isolation, not just direct flooding.</p>
+        </div>
+        <div class="impact-card">
+          <h4>Actionable Prioritization</h4>
+          <p>Ranks corridors and hubs by financial exposure to guide resilience investment, insurance pricing and contingency planning.</p>
+        </div>
+      </div>
+    </div>
+
     <div class="project-tags">
       <span class="tag">PostGIS</span>
       <span class="tag">Python</span>
@@ -265,9 +315,9 @@
       <span class="tag">MapLibre 3D</span>
     </div>
 
-    <div class="case-actions" style="margin-top:1.5rem;">
+    <div class="case-actions">
       <a href="https://raulferreras8.github.io/houston-flood-logistics/" target="_blank" rel="noopener noreferrer" class="btn-dark">Launch 3D Simulator &nearr;</a>
-      <a href="https://github.com/RaulFerreras8/houston-flood-logistics" target="_blank" rel="noopener noreferrer" class="btn-outline">View Code on GitHub</a>
+      <a href="https://github.com/RaulFerreras8/houston-flood-logistics" target="_blank" rel="noopener noreferrer" class="btn-outline">View Code on GitHub &rarr;</a>
     </div>
   </div>
 </div>
