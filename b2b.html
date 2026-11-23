@@ -44,7 +44,7 @@
     .project-body { padding:2rem 2.25rem 2.25rem; }
     .project h3 { font-family:'Playfair Display',serif; font-size:1.35rem; font-weight:400; color:var(--navy); margin-bottom:1.25rem; }
     .project-block { margin-bottom:0.95rem; }
-    .project-block strong { font-size:0.78rem; letter-spacing:0.08em; text-transform:uppercase; color:var(--blue); font-weight:500; display:block; margin-bottom:0.25rem; }
+    .project-block strong, .archive-block strong { font-size:0.78rem; letter-spacing:0.08em; text-transform:uppercase; color:var(--blue); font-weight:500; display:block; margin-bottom:0.25rem; }
     .project-block p { font-size:0.93rem; color:#444; }
     .project-block code, .about-text code { font-family:ui-monospace,Menlo,Consolas,monospace; font-size:0.8rem; background:#eef3f8; color:var(--navy-mid); padding:0.08rem 0.35rem; border-radius:2px; }
     .project-tags { display:flex; flex-wrap:wrap; gap:0.45rem; margin-top:1.5rem; }
@@ -67,9 +67,12 @@
     details.archive-item summary::after { content:'+'; color:var(--accent); font-size:1.3rem; line-height:1; }
     details.archive-item[open] summary::after { content:'\2212'; }
     details.archive-item[open] summary { border-bottom:1px solid var(--border); }
-    .archive-meta { font-family:'DM Sans',sans-serif; font-size:0.74rem; color:var(--text-muted); letter-spacing:0.04em; font-weight:300; }
+    .archive-meta { font-family:'DM Sans',sans-serif; font-size:0.74rem; color:var(--text-muted); letter-spacing:0.04em; font-weight:300; margin-left:auto; text-align:right; }
     .archive-body { padding:1rem 1.25rem 1.25rem; font-size:0.9rem; color:#444; }
+    .archive-body img { width:100%; display:block; border:1px solid var(--border); border-radius:2px; margin-bottom:1rem; }
     .archive-body p { margin-bottom:0.75rem; }
+    .archive-block { margin-bottom:0.9rem; }
+    .archive-block p { margin-bottom:0; }
     .todo { background:#fff3a3; color:#5a4a00; padding:0 0.25rem; border-radius:2px; font-weight:500; }
     .contact-box { background:var(--navy); border-radius:3px; padding:3rem; color:var(--white); }
     .contact-box p { color:rgba(255,255,255,0.65); font-size:0.97rem; margin-bottom:2rem; max-width:520px; line-height:1.8; }
@@ -79,7 +82,7 @@
     .contact-link-label { font-size:0.7rem; letter-spacing:0.12em; text-transform:uppercase; color:var(--accent); min-width:70px; font-weight:500; }
     .section-divider { border:none; border-top:1px solid var(--border); max-width:860px; margin:0 auto; }
     footer { background:var(--navy); text-align:center; padding:1.75rem 2rem; font-size:0.78rem; color:rgba(255,255,255,0.35); letter-spacing:0.05em; }
-    @media (max-width:640px) { nav ul { gap:1.25rem; } .services-grid { grid-template-columns:1fr; } .kpi-grid { grid-template-columns:1fr; } .hero { padding:4rem 1.5rem; } .section { padding:3.5rem 1.5rem; } .contact-box { padding:2rem 1.5rem; } .project-body { padding:1.5rem; } }
+    @media (max-width:640px) { nav ul { gap:1.25rem; } .services-grid { grid-template-columns:1fr; } .kpi-grid { grid-template-columns:1fr; } .hero { padding:4rem 1.5rem; } .section { padding:3.5rem 1.5rem; } .contact-box { padding:2rem 1.5rem; } .project-body { padding:1.5rem; } details.archive-item summary { flex-wrap:wrap; } .archive-meta { margin-left:0; text-align:left; } }
   </style>
 </head>
 <body>
@@ -226,20 +229,20 @@
   <div class="section" id="archive">
     <div class="section-label">Archive</div>
     <div class="section-title">Additional Spatial R&amp;D &amp; Archive</div>
-    <p class="archive-note">Earlier analytical work, kept for reference. Expand any item for details, or see the <a href="index.html#portfolio">full original portfolio</a>.</p>
+    <p class="archive-note">Earlier analytical work, kept for reference. Expand any item for the full project.</p>
 
     <details class="archive-item">
       <summary><span>Urban Heat Resilience Intelligence Platform (Brickell)</span><span class="archive-meta">Miami · Python · PostGIS</span></summary>
       <div class="archive-body">
-        <p>Parcel-level climate risk engine that cross-references extreme heat stress with sociodemographic vulnerability, producing a Thermal Vulnerability Index per asset. Built on PostGIS, Python and a 3D digital twin dashboard.</p>
-        <p><a href="https://github.com/RaulFerreras8/urban-heat-resilience-intelligence" target="_blank" rel="noopener noreferrer">View repository &rarr;</a> · <a href="index.html#case-study">Original case study &rarr;</a></p>
+        <div class="archive-block"><strong>Overview</strong><p>Parcel-level climate risk engine that cross-references extreme heat stress with sociodemographic vulnerability, producing a Thermal Vulnerability Index per asset. Built on PostGIS, Python and a 3D digital twin dashboard.</p></div>
+        <p><a href="https://github.com/RaulFerreras8/urban-heat-resilience-intelligence" target="_blank" rel="noopener noreferrer">View repository &rarr;</a></p>
       </div>
     </details>
 
     <details class="archive-item">
       <summary><span>Canary Wharf 3D — Service Deserts</span><span class="archive-meta">London · PostGIS · Pydeck</span></summary>
       <div class="archive-body">
-        <p>15-Minute City spatial intelligence pipeline and 3D digital twin identifying urban micro-retail deserts in Canary Wharf using PostGIS, Python and Pydeck.</p>
+        <div class="archive-block"><strong>Overview</strong><p>15-Minute City spatial intelligence pipeline and 3D digital twin identifying urban micro-retail deserts in Canary Wharf using PostGIS, Python and Pydeck.</p></div>
         <p><a href="https://github.com/RaulFerreras8/canary-wharf-service-deserts" target="_blank" rel="noopener noreferrer">View repository &rarr;</a></p>
       </div>
     </details>
@@ -247,24 +250,30 @@
     <details class="archive-item">
       <summary><span>Energy Vulnerability Index — Turin</span><span class="archive-meta">Italy · QGIS · Census tracts</span></summary>
       <div class="archive-body">
-        <p>Composite Energy Vulnerability Index from ISTAT census data, with Getis-Ord Gi* hotspot detection and LISA cluster analysis to pinpoint statistically significant vulnerability clusters.</p>
-        <p><a href="index.html#portfolio">See full project &rarr;</a></p>
+        <img src="imagenes/EVI_Turin.png" alt="Energy Vulnerability Index — Turin" loading="lazy" />
+        <div class="archive-block"><strong>Problem</strong><p>Identify which census tracts in Turin concentrate the highest energy vulnerability, combining socioeconomic, housing and demographic indicators to support targeted policy intervention.</p></div>
+        <div class="archive-block"><strong>Methodology</strong><p>Construction of a composite Energy Vulnerability Index (EVI) using normalized indicators from ISTAT census data at the finest available spatial resolution. Spatial autocorrelation analysis with Getis-Ord Gi* hotspot detection and Local Indicators of Spatial Association (LISA) to identify statistically significant vulnerability clusters.</p></div>
+        <div class="archive-block"><strong>Result</strong><p>High-resolution vulnerability maps and cluster analysis revealing spatial patterns invisible in aggregate statistics — enabling decision-makers to prioritize intervention areas with precision.</p></div>
       </div>
     </details>
 
     <details class="archive-item">
       <summary><span>Urban Heat Island Analysis — Philadelphia</span><span class="archive-meta">USA · Landsat 8 · QGIS</span></summary>
       <div class="archive-body">
-        <p>Land Surface Temperature retrieval from Landsat 8 showing intra-city temperature gaps above 28 °C, as a neighborhood-level evidence base for heat-equity and greening policy.</p>
-        <p><a href="index.html#portfolio">See full project &rarr;</a></p>
+        <img src="imagenes/UHI_Philadelphia.jpg.png" alt="Urban Heat Island Analysis — Philadelphia, PA" loading="lazy" />
+        <div class="archive-block"><strong>Problem</strong><p>Identify where Philadelphia's urban heat concentrates at the neighborhood scale and quantify the temperature gap between the hottest built-up districts and the city's green and riparian corridors, providing spatial evidence for heat-equity and urban greening policy.</p></div>
+        <div class="archive-block"><strong>Methodology</strong><p>Land Surface Temperature (LST) retrieval from Landsat 8 Band 10 (TIRS) using the radiometric calibration and emissivity correction workflow (USGS Collection 2, Level-2). Thermal classification into nine LST ranges (≤18 °C to &gt;46 °C) overlaid with OpenDataPhilly neighborhood boundaries.</p></div>
+        <div class="archive-block"><strong>Result</strong><p>High-resolution LST map revealing a pronounced heat island in central and south Philadelphia (38–46+ °C) against cooler green and waterfront buffers (18–26 °C), with intra-city differentials above 28 °C.</p></div>
       </div>
     </details>
 
     <details class="archive-item">
       <summary><span>Urban Service Accessibility Index — Barcelona</span><span class="archive-meta">Spain · QGIS · OpenStreetMap</span></summary>
       <div class="archive-body">
-        <p>Composite accessibility index at census-section level combining proximity, density and coverage of key urban services.</p>
-        <p><a href="index.html#portfolio">See full project &rarr;</a></p>
+        <img src="imagenes/Urban%20Service%20Accessibility%20Index%20%E2%80%94%20Barcelona.png" alt="Urban Service Accessibility Index — Barcelona" loading="lazy" />
+        <div class="archive-block"><strong>Problem</strong><p>Measure the real accessibility of urban services across Barcelona's census sections to identify underserved areas and support urban planning decisions.</p></div>
+        <div class="archive-block"><strong>Methodology</strong><p>Construction of a composite Urban Service Accessibility Index integrating OpenStreetMap data and Barcelona's open data portal at census section level. Multi-criteria spatial analysis combining proximity, density and coverage of key urban services.</p></div>
+        <div class="archive-block"><strong>Result</strong><p>Accessibility classification map identifying high, medium-high, medium-low and low accessibility zones, providing a spatial evidence base for equitable urban service planning.</p></div>
       </div>
     </details>
   </div>
