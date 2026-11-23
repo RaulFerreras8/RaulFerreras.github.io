@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Raúl Ferreras López · Automated Geospatial Pipelines</title>
+  <meta name="description" content="Reproducible PostgreSQL/PostGIS, Python and Docker workflows for solar developers, environmental consultancies and PropTech teams. White-label, zero vendor lock-in." />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    :root { --navy:#0f1f2e; --navy-mid:#1a3048; --blue:#2a6496; --blue-light:#3a7fc1; --accent:#c8a96e; --text:#1a1a1a; --text-muted:#666; --border:#e0e0e0; --bg:#f8f7f5; --white:#ffffff; }
+    * { margin:0; padding:0; box-sizing:border-box; }
+    html { scroll-behavior:smooth; }
+    body { font-family:'DM Sans',sans-serif; background:var(--bg); color:var(--text); line-height:1.7; font-weight:300; }
+    a { color:var(--blue); text-decoration:none; }
+    a:hover { color:var(--blue-light); }
+    nav { background:var(--navy); padding:1.1rem 2.5rem; display:flex; justify-content:space-between; align-items:center; position:sticky; top:0; z-index:100; }
+    nav .logo { font-family:'Playfair Display',serif; font-size:1rem; color:var(--white); letter-spacing:0.02em; }
+    nav ul { list-style:none; display:flex; gap:2.5rem; }
+    nav ul li a { font-size:0.82rem; color:rgba(255,255,255,0.65); letter-spacing:0.08em; text-transform:uppercase; font-weight:400; transition:color 0.2s; }
+    nav ul li a:hover { color:var(--accent); }
+    .hero { background:var(--navy); background-image:radial-gradient(ellipse at 70% 50%, rgba(42,100,150,0.25) 0%, transparent 60%), radial-gradient(ellipse at 20% 80%, rgba(200,169,110,0.08) 0%, transparent 50%); padding:7rem 2.5rem 6rem; position:relative; overflow:hidden; }
+    .hero::before { content:''; position:absolute; top:0; left:0; right:0; bottom:0; background-image:repeating-linear-gradient(0deg, transparent, transparent 39px, rgba(255,255,255,0.025) 40px), repeating-linear-gradient(90deg, transparent, transparent 39px, rgba(255,255,255,0.025) 40px); pointer-events:none; }
+    .hero-inner { max-width:820px; margin:0 auto; position:relative; }
+    .hero-eyebrow { font-size:0.75rem; letter-spacing:0.15em; text-transform:uppercase; color:var(--accent); margin-bottom:1.5rem; font-weight:500; }
+    .hero h1 { font-family:'Playfair Display',serif; font-size:clamp(2rem,4vw,3rem); font-weight:400; color:var(--white); line-height:1.25; margin-bottom:1.5rem; max-width:680px; }
+    .hero p { font-size:1rem; color:rgba(255,255,255,0.65); max-width:600px; margin-bottom:2.5rem; line-height:1.8; }
+    .hero-tags { display:flex; flex-wrap:wrap; gap:0.5rem; margin-bottom:3rem; }
+    .hero-tag { border:1px solid rgba(255,255,255,0.2); color:rgba(255,255,255,0.6); padding:0.3rem 0.85rem; border-radius:2px; font-size:0.78rem; letter-spacing:0.04em; }
+    .hero-actions { display:flex; gap:1rem; flex-wrap:wrap; }
+    .btn-primary { background:var(--accent); color:var(--navy); padding:0.8rem 2rem; font-size:0.85rem; font-weight:500; letter-spacing:0.06em; text-transform:uppercase; border-radius:2px; transition:background 0.2s; }
+    .btn-primary:hover { background:#d4b87a; color:var(--navy); }
+    .btn-secondary { border:1px solid rgba(255,255,255,0.3); color:rgba(255,255,255,0.75); padding:0.8rem 2rem; font-size:0.85rem; letter-spacing:0.06em; text-transform:uppercase; border-radius:2px; transition:border-color 0.2s, color 0.2s; }
+    .btn-secondary:hover { border-color:rgba(255,255,255,0.6); color:var(--white); }
+    .btn-dark { background:var(--navy); color:var(--white); padding:0.8rem 2rem; font-size:0.85rem; font-weight:500; letter-spacing:0.06em; text-transform:uppercase; border-radius:2px; transition:background 0.2s; }
+    .btn-dark:hover { background:var(--navy-mid); color:var(--white); }
+    .btn-outline { border:1px solid var(--navy); color:var(--navy); padding:0.8rem 2rem; font-size:0.85rem; font-weight:500; letter-spacing:0.06em; text-transform:uppercase; border-radius:2px; transition:background 0.2s, color 0.2s; }
+    .btn-outline:hover { background:var(--navy); color:var(--white); }
+    .section { max-width:860px; margin:0 auto; padding:5rem 2.5rem; }
+    .section-label { font-size:0.72rem; letter-spacing:0.18em; text-transform:uppercase; color:var(--text-muted); margin-bottom:0.75rem; font-weight:500; }
+    .section-title { font-family:'Playfair Display',serif; font-size:1.6rem; font-weight:400; color:var(--navy); margin-bottom:3rem; padding-bottom:1.25rem; border-bottom:1px solid var(--border); }
+    .project-featured-label { display:inline-flex; background:var(--accent); color:var(--navy); font-size:0.7rem; font-weight:500; letter-spacing:0.1em; text-transform:uppercase; padding:0.3rem 0.8rem; border-radius:2px; margin-bottom:1rem; }
+    .project { margin-bottom:3rem; background:var(--white); border:1px solid var(--border); border-radius:3px; overflow:hidden; box-shadow:0 2px 20px rgba(0,0,0,0.06); }
+    .project.featured { border-color:var(--accent); box-shadow:0 4px 32px rgba(200,169,110,0.15); }
+    .project-body { padding:2rem 2.25rem 2.25rem; }
+    .project h3 { font-family:'Playfair Display',serif; font-size:1.35rem; font-weight:400; color:var(--navy); margin-bottom:1.25rem; }
+    .project-block { margin-bottom:0.95rem; }
+    .project-block strong { font-size:0.78rem; letter-spacing:0.08em; text-transform:uppercase; color:var(--blue); font-weight:500; display:block; margin-bottom:0.25rem; }
+    .project-block p { font-size:0.93rem; color:#444; }
+    .project-block code, .about-text code { font-family:ui-monospace,Menlo,Consolas,monospace; font-size:0.8rem; background:#eef3f8; color:var(--navy-mid); padding:0.08rem 0.35rem; border-radius:2px; }
+    .project-tags { display:flex; flex-wrap:wrap; gap:0.45rem; margin-top:1.5rem; }
+    .tag { background:#eef3f8; color:var(--blue); padding:0.28rem 0.75rem; border-radius:2px; font-size:0.76rem; font-weight:400; letter-spacing:0.03em; }
+    .kpi-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:1rem; margin:1.25rem 0 0.5rem; }
+    .kpi { background:var(--navy); color:var(--white); border-radius:3px; padding:1rem 1.1rem; border-top:3px solid var(--accent); }
+    .kpi-value { font-family:'Playfair Display',serif; font-size:1.2rem; line-height:1.2; }
+    .kpi-label { font-size:0.68rem; letter-spacing:0.12em; text-transform:uppercase; color:rgba(255,255,255,0.55); margin-top:0.3rem; }
+    .case-actions { display:flex; gap:1rem; flex-wrap:wrap; margin-top:2rem; }
+    .services-grid { display:grid; grid-template-columns:1fr 1fr; gap:1.5rem; }
+    .service-card { background:var(--white); border:1px solid var(--border); border-radius:3px; padding:1.75rem; border-top:3px solid var(--blue); box-shadow:0 1px 8px rgba(0,0,0,0.04); }
+    .service-card h3 { font-family:'Playfair Display',serif; font-size:1.05rem; font-weight:400; color:var(--navy); margin-bottom:0.75rem; }
+    .service-card p { font-size:0.88rem; color:#555; line-height:1.7; }
+    .about-text p { font-size:0.97rem; color:#444; margin-bottom:1.2rem; line-height:1.85; }
+    .stack { display:flex; flex-wrap:wrap; gap:0.5rem; margin-top:1.75rem; }
+    .archive-note { font-size:0.9rem; color:var(--text-muted); margin-bottom:1.5rem; }
+    details.archive-item { background:var(--white); border:1px solid var(--border); border-radius:3px; margin-bottom:0.75rem; }
+    details.archive-item summary { cursor:pointer; list-style:none; padding:1rem 1.25rem; font-family:'Playfair Display',serif; font-size:1rem; color:var(--navy); display:flex; justify-content:space-between; align-items:center; gap:1rem; }
+    details.archive-item summary::-webkit-details-marker { display:none; }
+    details.archive-item summary::after { content:'+'; color:var(--accent); font-size:1.3rem; line-height:1; }
+    details.archive-item[open] summary::after { content:'\2212'; }
+    details.archive-item[open] summary { border-bottom:1px solid var(--border); }
+    .archive-meta { font-family:'DM Sans',sans-serif; font-size:0.74rem; color:var(--text-muted); letter-spacing:0.04em; font-weight:300; }
+    .archive-body { padding:1rem 1.25rem 1.25rem; font-size:0.9rem; color:#444; }
+    .archive-body p { margin-bottom:0.75rem; }
+    .todo { background:#fff3a3; color:#5a4a00; padding:0 0.25rem; border-radius:2px; font-weight:500; }
+    .contact-box { background:var(--navy); border-radius:3px; padding:3rem; color:var(--white); }
+    .contact-box p { color:rgba(255,255,255,0.65); font-size:0.97rem; margin-bottom:2rem; max-width:520px; line-height:1.8; }
+    .contact-links { display:flex; flex-direction:column; gap:0.75rem; }
+    .contact-link { display:flex; align-items:center; gap:0.75rem; color:rgba(255,255,255,0.8); font-size:0.93rem; transition:color 0.2s; }
+    .contact-link:hover { color:var(--accent); }
+    .contact-link-label { font-size:0.7rem; letter-spacing:0.12em; text-transform:uppercase; color:var(--accent); min-width:70px; font-weight:500; }
+    .section-divider { border:none; border-top:1px solid var(--border); max-width:860px; margin:0 auto; }
+    footer { background:var(--navy); text-align:center; padding:1.75rem 2rem; font-size:0.78rem; color:rgba(255,255,255,0.35); letter-spacing:0.05em; }
+    @media (max-width:640px) { nav ul { gap:1.25rem; } .services-grid { grid-template-columns:1fr; } .kpi-grid { grid-template-columns:1fr; } .hero { padding:4rem 1.5rem; } .section { padding:3.5rem 1.5rem; } .contact-box { padding:2rem 1.5rem; } .project-body { padding:1.5rem; } }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <div class="logo">Raúl Ferreras López</div>
+    <ul>
+      <li><a href="#case-studies">Case Studies</a></li>
+      <li><a href="#services">Services</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#archive">Archive</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <div class="hero">
+    <div class="hero-inner">
+      <div class="hero-eyebrow">Geospatial Engineering · PostGIS · Python · Docker</div>
+      <h1>Automated Geospatial Pipelines &amp; White-Label Spatial Engineering</h1>
+      <p>I build reproducible PostgreSQL/PostGIS, Python, and Docker workflows for solar developers, environmental consultancies, and PropTech teams—cutting manual desktop GIS hours with zero vendor lock-in.</p>
+      <div class="hero-tags">
+        <span class="hero-tag">PostgreSQL/PostGIS</span>
+        <span class="hero-tag">Python</span>
+        <span class="hero-tag">Docker</span>
+        <span class="hero-tag">FastAPI</span>
+        <span class="hero-tag">QGIS</span>
+        <span class="hero-tag">ArcGIS Pro</span>
+      </div>
+      <div class="hero-actions">
+        <!-- Replace the mailto with a calendar link (Calendly / Cal.com) when ready -->
+        <a href="mailto:raulferreraslopez@outlook.com?subject=Technical%20Scoping%20Call" class="btn-primary" id="cta-book-call">Book a 20-Min Technical Scoping Call</a>
+        <a href="#case-studies" class="btn-secondary">View Production Case Studies</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="case-studies">
+    <div class="section-label">Selected work</div>
+    <div class="section-title">Production Case Studies</div>
+
+    <div class="project featured">
+      <div class="project-body">
+        <div class="project-featured-label">&#9733; Case study 1 · Solar &amp; BESS site screening</div>
+        <h3>Automated 4D Solar Yield &amp; Shading Site-Screening Engine</h3>
+        <div class="project-block">
+          <strong>The Business Problem</strong>
+          <p>Manual terrain, slope, and hourly shadow analysis across candidate parcels slows down solar/BESS site selection and ties up senior analysts in desktop GIS software.</p>
+        </div>
+        <div class="project-block">
+          <strong>The Engineering Solution</strong>
+          <p>Built a containerized PostGIS + FastAPI + <code>pvlib</code> pipeline ingesting 1m USGS DEM and building footprints to run automated hourly 4D shadow ray-tracing and irradiance modeling at scale.</p>
+        </div>
+        <div class="project-block">
+          <strong>Measurable Impact</strong>
+          <p>Processes 2,080 buildings (≈452 ha) in <span class="todo">[X minutes]</span> end-to-end without manual intervention, outputting queryable kWh/m² yield losses via REST API directly into QGIS or web dashboards.</p>
+          <div class="kpi-grid">
+            <div class="kpi"><div class="kpi-value">2,080</div><div class="kpi-label">Buildings screened</div></div>
+            <div class="kpi"><div class="kpi-value">29,120</div><div class="kpi-label">Hourly shading records</div></div>
+            <div class="kpi"><div class="kpi-value"><span class="todo">[X min]</span></div><div class="kpi-label">End-to-end runtime</div></div>
+          </div>
+        </div>
+        <div class="project-tags">
+          <span class="tag">Docker</span><span class="tag">PostgreSQL/PostGIS</span><span class="tag">pvlib</span><span class="tag">GeoPandas</span><span class="tag">rasterio</span><span class="tag">FastAPI</span>
+        </div>
+        <div class="case-actions">
+          <a href="https://github.com/RaulFerreras8/phoenix-4d-solar-digital-twin" target="_blank" rel="noopener noreferrer" class="btn-outline">View Code on GitHub &rarr;</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="project featured">
+      <div class="project-body">
+        <div class="project-featured-label">&#9733; Case study 2 · Environmental &amp; infrastructure</div>
+        <h3>Automated Terrain Flood Risk &amp; Critical Route Vulnerability Pipeline</h3>
+        <div class="project-block">
+          <strong>The Business Problem</strong>
+          <p>Environmental and infrastructure consultancies spend dozens of billable hours repeating manual hydrological modeling and network disruption checks across multiple desktop licenses.</p>
+        </div>
+        <div class="project-block">
+          <strong>The Engineering Solution</strong>
+          <p>Engineered a reproducible ETL and hydrological simulation pipeline combining 10m USGS 3DEP terrain data, WhiteboxTools, PostGIS, and NetworkX to identify flood-exposed corridors and &ldquo;asphalt island&rdquo; bottlenecks automatically.</p>
+        </div>
+        <div class="project-block">
+          <strong>Measurable Impact</strong>
+          <p>Replaces manual desktop geoprocessing with a single containerized run covering ≈167 km² and 11,967 road segments in <span class="todo">[X minutes]</span>, ready for white-label deployment in client cloud environments with MapLibre GL visualization.</p>
+          <div class="kpi-grid">
+            <div class="kpi"><div class="kpi-value">11,967</div><div class="kpi-label">Road segments analyzed</div></div>
+            <div class="kpi"><div class="kpi-value">141</div><div class="kpi-label">Logistics hubs classified</div></div>
+            <div class="kpi"><div class="kpi-value"><span class="todo">[X min]</span></div><div class="kpi-label">End-to-end runtime</div></div>
+          </div>
+        </div>
+        <div class="project-tags">
+          <span class="tag">Docker</span><span class="tag">PostGIS</span><span class="tag">WhiteboxTools</span><span class="tag">NetworkX</span><span class="tag">Python</span><span class="tag">MapLibre GL</span>
+        </div>
+        <div class="case-actions">
+          <a href="https://raulferreras8.github.io/houston-flood-logistics/" target="_blank" rel="noopener noreferrer" class="btn-dark">Launch 3D Simulator &nearr;</a>
+          <a href="https://github.com/RaulFerreras8/houston-flood-logistics" target="_blank" rel="noopener noreferrer" class="btn-outline">View Code on GitHub &rarr;</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <hr class="section-divider" />
+
+  <div class="section" id="services">
+    <div class="section-label">How we can work together</div>
+    <div class="section-title">Services</div>
+    <div class="services-grid">
+      <div class="service-card">
+        <h3>2-Week Feasibility Sprint</h3>
+        <p>Audit of your current spatial workflow and a working prototype on an anonymized data sample, with quantified savings in analyst hours and desktop licenses. Zero lock-in: delivered in your own cloud and GitHub. The sprint fee is credited toward implementation if you proceed within 30 days.</p>
+      </div>
+      <div class="service-card">
+        <h3>White-Label Technical Support</h3>
+        <p>Under NDA and under your brand. For environmental, solar and engineering consultancies that win projects needing PostGIS, Python or Docker, without adding a full-time hire.</p>
+      </div>
+      <div class="service-card">
+        <h3>Desktop-to-Pipeline Migration</h3>
+        <p>Repetitive DEM, flood and zoning workflows moved from licensed desktop software into reproducible PostGIS/Python containers, still connected to QGIS or ArcGIS Pro.</p>
+      </div>
+      <div class="service-card">
+        <h3>Delivery Standards</h3>
+        <p>Dockerized and tested code, documentation, and processing inside your VPC. Professional services with full IP assignment to you.</p>
+      </div>
+    </div>
+  </div>
+
+  <hr class="section-divider" />
+
+  <div class="section" id="about">
+    <div class="section-label">About</div>
+    <div class="section-title">Remote spatial engineering from Santiago, Chile</div>
+    <div class="about-text">
+      <p>I'm an independent geospatial engineer based in Santiago, Chile. My working hours overlap with the US East Coast and with UK/European mornings, so we can collaborate in real time.</p>
+      <p>I run 2-week feasibility sprints (zero lock-in, deployed in your cloud and your GitHub) and provide white-label technical support under NDA for environmental, solar and engineering consultancies.</p>
+      <div class="stack">
+        <span class="tag">PostgreSQL/PostGIS</span><span class="tag">Python</span><span class="tag">Docker</span><span class="tag">FastAPI</span><span class="tag">pvlib</span><span class="tag">WhiteboxTools</span><span class="tag">QGIS</span><span class="tag">ArcGIS Pro</span>
+      </div>
+    </div>
+  </div>
+
+  <hr class="section-divider" />
+
+  <div class="section" id="archive">
+    <div class="section-label">Archive</div>
+    <div class="section-title">Additional Spatial R&amp;D &amp; Archive</div>
+    <p class="archive-note">Earlier analytical work, kept for reference. Expand any item for details, or see the <a href="index.html#portfolio">full original portfolio</a>.</p>
+
+    <details class="archive-item">
+      <summary><span>Brickell Thermal Resilience Platform</span><span class="archive-meta">Miami · Python · PostGIS</span></summary>
+      <div class="archive-body">
+        <p>Asset-level Thermal Vulnerability Index (0–100) for 2,000+ properties in Brickell, combining extreme heat stress with sociodemographic vulnerability, delivered through an interactive portfolio dashboard.</p>
+        <p><a href="index.html#case-study">Read the original case study &rarr;</a></p>
+      </div>
+    </details>
+
+    <details class="archive-item">
+      <summary><span>Canary Wharf 3D</span><span class="archive-meta">London</span></summary>
+      <div class="archive-body">
+        <p><span class="todo">[Add the existing description and link for Canary Wharf 3D before merging]</span></p>
+      </div>
+    </details>
+
+    <details class="archive-item">
+      <summary><span>Energy Vulnerability Index — Turin</span><span class="archive-meta">Italy · QGIS · Census tracts</span></summary>
+      <div class="archive-body">
+        <p>Composite Energy Vulnerability Index from ISTAT census data, with Getis-Ord Gi* hotspot detection and LISA cluster analysis to pinpoint statistically significant vulnerability clusters.</p>
+        <p><a href="index.html#portfolio">See full project &rarr;</a></p>
+      </div>
+    </details>
+
+    <details class="archive-item">
+      <summary><span>Agricultural NDVI — Jaén</span><span class="archive-meta">Spain · Remote sensing</span></summary>
+      <div class="archive-body">
+        <p><span class="todo">[Add the existing description and link for Jaén NDVI before merging]</span></p>
+      </div>
+    </details>
+
+    <details class="archive-item">
+      <summary><span>Urban Heat Island Analysis — Philadelphia</span><span class="archive-meta">USA · Landsat 8 · QGIS</span></summary>
+      <div class="archive-body">
+        <p>Land Surface Temperature retrieval from Landsat 8 showing intra-city temperature gaps above 28 °C, as a neighborhood-level evidence base for heat-equity and greening policy.</p>
+        <p><a href="index.html#portfolio">See full project &rarr;</a></p>
+      </div>
+    </details>
+
+    <details class="archive-item">
+      <summary><span>Urban Service Accessibility Index — Barcelona</span><span class="archive-meta">Spain · QGIS · OpenStreetMap</span></summary>
+      <div class="archive-body">
+        <p>Composite accessibility index at census-section level combining proximity, density and coverage of key urban services.</p>
+        <p><a href="index.html#portfolio">See full project &rarr;</a></p>
+      </div>
+    </details>
+  </div>
+
+  <hr class="section-divider" />
+
+  <div class="section" id="contact">
+    <div class="section-label">Contact</div>
+    <div class="section-title">Let's scope your bottleneck</div>
+    <div class="contact-box">
+      <p>Tell me which spatial workflow is eating your team's hours. In a 20-minute call we'll quantify it and decide whether a 2-week sprint makes sense.</p>
+      <div class="contact-links">
+        <a class="contact-link" href="mailto:raulferreraslopez@outlook.com?subject=Technical%20Scoping%20Call"><span class="contact-link-label">Email</span>raulferreraslopez@outlook.com</a>
+        <a class="contact-link" href="https://github.com/RaulFerreras8" target="_blank" rel="noopener noreferrer"><span class="contact-link-label">GitHub</span>github.com/RaulFerreras8</a>
+      </div>
+    </div>
+  </div>
+
+  <footer>&copy; 2026 Raúl Ferreras López · Santiago, Chile</footer>
+
+</body>
+</html>
